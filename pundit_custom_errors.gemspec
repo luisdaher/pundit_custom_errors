@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'factory_girl', '~> 4.0'
-  spec.add_development_dependency 'rubycritic'
+  spec.add_development_dependency 'rubocop'
 end
