@@ -6,19 +6,20 @@ module AuthorizeWithCustomException
     query ||= params[:action].to_s + '?'
     @_pundit_policy_authorized = true
     policy = policy(record)
-    fail generate_error_for(policy, query) unless policy.public_send(query)
+    fail generate_error_for(policy, query, record) unless policy.public_send(query)
     true
   end
 
-  def generate_error_for(policy, query)
+  def generate_error_for(policy, query, record)
     error = policy.error
     error ||= Pundit::NotAuthorizedError.new(
-      translate_error_message_for_query(query)
+      translate_error_message_for_query(query, policy)
     )
     error.query, error.record, error.policy = query, record, policy
+    error
   end
 
-  def translate_error_message_for_query(query)
+  def translate_error_message_for_query(query, policy)
     t("#{policy.class.to_s.underscore}.#{query}",
       scope: 'pundit',
       default: :default)
