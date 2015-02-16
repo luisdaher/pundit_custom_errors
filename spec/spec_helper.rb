@@ -1,8 +1,14 @@
-require 'bundler/setup'
-Bundler.setup
+require 'rubygems'
+require 'bundler'
+require 'accesstage'
+require 'factory_girl'
 
-# require 'your_gem_name' # and any other gems you need
+Bundler.setup(:default, :test, :development)
+
+require 'pry'
 
 RSpec.configure do |config|
-  # some (optional) config here
+  config.mock_with :rspec
+  config.include FactoryGirl::Syntax::Methods
+  FactoryGirl.find_definitions
 end
