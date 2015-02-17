@@ -3,13 +3,12 @@ require 'spec_helper'
 describe PunditCustomErrors do
   class PunditMock
     prepend PunditCustomErrors
-    def policy
-      DummyClassPolicy.new
+    def policy(_arg)
+      DummyRecordPolicy.new
     end
   end
-  class DummyRecord
-  end
   class DummyRecordPolicy
+    attr_accessor :error
   end
 
   # before(:each) do
@@ -20,8 +19,8 @@ describe PunditCustomErrors do
   describe '.authorize' do
     context "when the user isn't authorized" do
       it 'raises an error' do
-        binding.pry
-        PunditMock.new.authorize(DummyRecord.new, 'show?')
+        expect_any_instance_of(DummyRecordPolicy).to receive(:show?).and_return(false)
+        PunditMock.new.authorize(Class.new, 'show?')
       end
     end
   end
