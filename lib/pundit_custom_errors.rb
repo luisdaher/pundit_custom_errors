@@ -29,7 +29,7 @@ module PunditCustomErrors
   def translate_error_message_for_query(query, policy)
     t("#{policy.class.to_s.underscore}.#{query}",
       scope: 'pundit',
-      default: :default)
+      default: :default) if self.respond_to?(:t)
   end
 end
 
