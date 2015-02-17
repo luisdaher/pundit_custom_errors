@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'bundler'
-require 'accesstage'
 require 'factory_girl'
 
 Bundler.setup(:default, :test, :development)

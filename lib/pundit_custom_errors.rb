@@ -1,5 +1,5 @@
 require 'pundit_custom_errors/version'
-require 'pundit'
+require 'pundit_custom_errors/pundit'
 
 # Module created to override Pundit's 'authorize' function. It enables Pundit to
 # use the 'error' attribute (if existent) inside a Policy object to display
