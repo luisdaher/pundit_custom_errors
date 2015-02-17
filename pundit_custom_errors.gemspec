@@ -8,9 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = PunditCustomErrors::VERSION
   spec.authors       = ['Luis Daher']
   spec.email         = ['luisotaviodaher@gmail.com']
-  spec.summary       = 'Enables custom error messages in Pundit'
-  spec.description   = spec.summary
-  spec.homepage      = ''
+  spec.summary       = 'Custom error messages in Pundit'
+  spec.description   = %(Contains a monkey patch that enables
+                         custom messages in Pundit)
+  spec.homepage      = 'http://luisdaher.net'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,10 +21,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.7'
   spec.add_development_dependency 'rake', '~> 10.0'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'rspec', '~> 3.2', '>= 3.2.0'
+  spec.add_development_dependency 'pry', '~> 0.10', '>= 0.10.1'
   spec.add_development_dependency 'factory_girl', '~> 4.0'
-  spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'pundit'
-  spec.add_runtime_dependency 'pundit'
+  spec.add_development_dependency 'rubocop', '~> 0.28', '>= 0.28.0'
+  spec.add_runtime_dependency 'pundit', '~> 0.3', '>= 0.3.0'
 end
