@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler'
+require 'pundit_custom_errors'
 require 'factory_girl'
 
 Bundler.setup(:default, :test, :development)
