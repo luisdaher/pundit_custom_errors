@@ -1,5 +1,4 @@
 require 'pundit_custom_errors/version'
-require 'pundit_custom_errors/pundit'
 
 # Module created to override Pundit's 'authorize' function. It enables Pundit to
 # use the 'error' attribute (if existent) inside a Policy object to display
@@ -32,4 +31,9 @@ module PunditCustomErrors
       scope: 'pundit',
       default: :default)
   end
+end
+
+# The 'PunditCustomErrors' module is being prepended here.
+module Pundit
+  prepend PunditCustomErrors
 end
