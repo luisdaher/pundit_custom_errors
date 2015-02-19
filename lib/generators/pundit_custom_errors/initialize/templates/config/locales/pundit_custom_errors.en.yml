@@ -1,0 +1,3 @@
+en:
+  pundit:
+    default: "You have requested a page that you do not have access to."
