@@ -1,14 +1,11 @@
 require 'spec_helper'
 
-describe PunditCustomErrors do
+describe PunditCustomErrors::Authorization do
   class DummyClass
-    prepend PunditCustomErrors
+    prepend PunditCustomErrors::Authorization
     def policy(_arg)
-      DummyRecordPolicy.new
+      PunditCustomErrors::Policy.new
     end
-  end
-  class DummyRecordPolicy
-    attr_accessor :error
   end
 
   describe '.authorize' do
@@ -30,7 +27,7 @@ describe PunditCustomErrors do
 
     context 'when the user is authorized' do
       before :each do
-        expect_any_instance_of(DummyRecordPolicy).to(
+        expect_any_instance_of(PunditCustomErrors::Policy).to(
           receive(:show?).and_return(true)
         )
       end
@@ -38,12 +35,5 @@ describe PunditCustomErrors do
         expect { @dummy_class.authorize(Class.new, 'show?') }.not_to raise_error
       end
     end
-  end
-
-  describe '.generate_error_for' do
-    
-  end
-
-  describe '.translate_error_message_for_query' do
   end
 end

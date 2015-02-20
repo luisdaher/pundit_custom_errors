@@ -1,9 +1,5 @@
 module PunditCustomErrors
   class Policy
-    attr_reader :error
-
-    def generate_error(message)
-      self.error = Pundit::NotAuthorizedError.new(message)
-    end
+    attr_reader :error_message
   end
 end
