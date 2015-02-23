@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Luis Daher', 'Damien Wilson']
   spec.email         = ['luisotaviodaher@gmail.com', 'damien@mindglob.com']
   spec.summary       = 'Custom error messages for Pundit.'
-  spec.description   = %(Contains a monkey patch that enables
-                         custom error messages for Pundit.)
+  spec.description   = %(An extension for the Pundit gem that enables the 
+                         creation of custom error messages.)  
   spec.homepage      = 'http://luisdaher.net'
   spec.license       = 'MIT'
 
