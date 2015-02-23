@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ### How to generate a custom error message
 
-- extend PunditCustomErrors::Policy in your Policy class
+- extend `PunditCustomErrors::Policy` in your Policy class
 - inside the validation method, populate the Policy's `error_message` attribute with the desired error message
 
 ### Extracting default error messages to YAML
