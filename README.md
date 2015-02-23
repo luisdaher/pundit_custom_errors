@@ -31,9 +31,7 @@ Or install it yourself as:
 
 By running the command:
 
-```ruby
-rails generate pundit_custom_errors:initialize 
-```
+    $ rails generate pundit_custom_errors:initialize 
 
 A file called `pundit_custom_errors.en.yml` will be generated inside the `config/locales` folder. It contains the default message, used if there's no messages for the given controller/action validation.
 
