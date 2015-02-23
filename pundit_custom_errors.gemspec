@@ -6,11 +6,11 @@ require 'pundit_custom_errors/version'
 Gem::Specification.new do |spec|
   spec.name          = 'pundit_custom_errors'
   spec.version       = PunditCustomErrors::VERSION
-  spec.authors       = ['Luis Daher']
-  spec.email         = ['luisotaviodaher@gmail.com']
-  spec.summary       = 'Custom error messages in Pundit'
+  spec.authors       = ['Luis Daher', 'Damien Wilson']
+  spec.email         = ['luisotaviodaher@gmail.com', 'damien@mindglob.com']
+  spec.summary       = 'Custom error messages for Pundit.'
   spec.description   = %(Contains a monkey patch that enables
-                         custom messages in Pundit)
+                         custom error messages for Pundit.)
   spec.homepage      = 'http://luisdaher.net'
   spec.license       = 'MIT'
 
