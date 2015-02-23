@@ -22,7 +22,20 @@ Or install it yourself as:
 
 ### How to generate a custom error message
 
-### Extracting default error messages to YAML 
+- extend PunditCustomErrors::Policy in your Policy class
+- inside the validation method, populate the Policy's 'error_message' attribute with the desired error message
+
+### Extracting default error messages to YAML
+
+By running the command:
+
+```ruby
+rails generate pundit_custom_errors:initialize 
+```
+
+A file called 'pundit_custom_errors.en.yml' will be generated inside the 'config/locales' folder. It contains the default message, used if there's no messages for the given controller/action validation.
+
+#### Creating error messages in the localization file
 
 ## Contributing
 
