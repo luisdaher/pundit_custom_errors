@@ -20,10 +20,12 @@ Or install it yourself as:
 
 ## Usage
 
-### How to generate a custom error message
+### How to create custom error messages
 
-- extend `PunditCustomErrors::Policy` in your Policy class
-- inside the validation method, populate the Policy's `error_message` attribute with the desired error message
+- extend `PunditCustomErrors::Policy` in your `Policy` class.
+- inside the validation method, populate the `Policy`'s `error_message` attribute with the desired error message.
+
+This way, as the action validation method returns `false`, it will create an error containing the created message. 
 
 ### Extracting default error messages to YAML
 
@@ -49,6 +51,12 @@ en:
       show?: "You're not allowed to see this."
       edit?: "You're not allowed to edit this."
 ```
+### Message hierarchy
+
+1. The gem will use the message present in the `error_message` attribute, that should be part of the given `Policy` class.
+2. If there's no error message (or even the attribute, if `PunditCustomErrors::Policy` isn't being extended), it will use the message for the given action validation, present in the YAML file. 
+3. If there's no message for the given action validation in the YAML, it will use the YAML's default message inside `pundit` hash.
+4. If there's no YAML default message, it will use the hardcoded message, behaving the same way as Pundit does today.
 
 ## Contributing
 
