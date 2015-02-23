@@ -1,6 +1,6 @@
 # PunditCustomErrors
 
-'pundit_custom_errors' is an extension for the Pundit gem that enables the creation of custom error messages. This adds more flexibility to retrieve different kinds of messages in the same validation method, according to the nature of the error. As for the default error message, it is also set up to generate them by using a localization file (if existent).
+`pundit_custom_errors` is an extension for the Pundit gem that enables the creation of custom error messages. This adds more flexibility to retrieve different kinds of messages in the same validation method, according to the nature of the error. As for the default error message, it is also set up to generate them by using a localization file (if existent).
 
 ## Installation
 
@@ -23,9 +23,11 @@ Or install it yourself as:
 ### How to generate a custom error message
 
 - extend PunditCustomErrors::Policy in your Policy class
-- inside the validation method, populate the Policy's 'error_message' attribute with the desired error message
+- inside the validation method, populate the Policy's `error_message` attribute with the desired error message
 
 ### Extracting default error messages to YAML
+
+#### Creating the YAML file 
 
 By running the command:
 
@@ -33,9 +35,11 @@ By running the command:
 rails generate pundit_custom_errors:initialize 
 ```
 
-A file called 'pundit_custom_errors.en.yml' will be generated inside the 'config/locales' folder. It contains the default message, used if there's no messages for the given controller/action validation.
+A file called `pundit_custom_errors.en.yml` will be generated inside the `config/locales` folder. It contains the default message, used if there's no messages for the given controller/action validation.
 
 #### Creating error messages in the localization file
+
+
 
 ## Contributing
 
