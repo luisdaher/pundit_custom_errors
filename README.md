@@ -1,5 +1,5 @@
 # PunditCustomErrors
-[![Build Status](https://travis-ci.org/luisdaher/pundit_custom_errors.svg)](https://travis-ci.org/luisdaher/pundit_custom_errors)
+[![Build Status](https://travis-ci.org/luisdaher/pundit_custom_errors.svg)](https://travis-ci.org/luisdaher/pundit_custom_errors) [![Code Climate](https://codeclimate.com/github/luisdaher/pundit_custom_errors/badges/gpa.svg)](https://codeclimate.com/github/luisdaher/pundit_custom_errors)
 
 `pundit_custom_errors` is an extension for the Pundit gem that enables the creation of custom error messages. This adds more flexibility to retrieve different kinds of messages in the same validation method, according to the nature of the error. As for the default error message, it is also set up to generate them by using a localization file (if existent).
 
@@ -26,15 +26,15 @@ Or install it yourself as:
 - extend `PunditCustomErrors::Policy` in your `Policy` class.
 - inside the validation method, populate the `Policy`'s `error_message` attribute with the desired error message.
 
-This way, as the action validation method returns `false`, it will create an error containing the created message. 
+This way, as the action validation method returns `false`, it will create an error containing the created message.
 
 ### Extracting default error messages to YAML
 
-#### Creating the YAML file 
+#### Creating the YAML file
 
 By running the command:
 
-    $ rails generate pundit_custom_errors:initialize 
+    $ rails generate pundit_custom_errors:initialize
 
 A file called `pundit_custom_errors.en.yml` will be generated inside the `config/locales` folder. It contains the default message, used if there's no messages for the given controller/action validation.
 
@@ -55,7 +55,7 @@ en:
 ### Message hierarchy
 
 1. The gem will use the message present in the `error_message` attribute, that should be part of the given `Policy` class.
-2. If there's no error message (or even the attribute, if `PunditCustomErrors::Policy` isn't being extended), it will use the message for the given action validation, present in the YAML file. 
+2. If there's no error message (or even the attribute, if `PunditCustomErrors::Policy` isn't being extended), it will use the message for the given action validation, present in the YAML file.
 3. If there's no message for the given action validation in the YAML, it will use the YAML's default message inside `pundit` hash.
 4. If there's no YAML default message, it will use the hardcoded message, behaving the same way as Pundit does today.
 
