@@ -37,7 +37,18 @@ A file called `pundit_custom_errors.en.yml` will be generated inside the `config
 
 #### Creating error messages in the localization file
 
+The `policy` keys must be the snake case representation of the given policy classes, containing action names as keys (e.g: `show?`, `edit?` and the messages as values). Also, the `policy` hashes must be inside the `pundit` hash, inside the `en` (or the desired language abbreviation) hash.
 
+In short, the YAML file structured should be similar as the example below:
+
+```yaml
+en:
+  pundit:
+    default: "You have requested a page that you do not have access to."
+    sample_policy:
+      show?: "You're not allowed to see this."
+      edit?: "You're not allowed to edit this"
+```
 
 ## Contributing
 
