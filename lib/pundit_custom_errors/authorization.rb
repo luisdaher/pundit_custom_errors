@@ -18,7 +18,7 @@ module PunditCustomErrors
     protected
 
     def generate_error_for(policy, query, record)
-      message = policy.error_message
+      message = policy.error_message if policy.respond_to?(:error_message)
       message ||= translate_error_message_for_query(query, policy)
       message ||= "not allowed to #{query} this #{record}"
 
