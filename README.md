@@ -1,7 +1,7 @@
 # PunditCustomErrors
 [![Build Status](https://travis-ci.org/luisdaher/pundit_custom_errors.svg)](https://travis-ci.org/luisdaher/pundit_custom_errors) [![Code Climate](https://codeclimate.com/github/luisdaher/pundit_custom_errors/badges/gpa.svg)](https://codeclimate.com/github/luisdaher/pundit_custom_errors)
 
-`pundit_custom_errors` is an extension for the Pundit gem that enables the creation of custom error messages. This adds more flexibility to retrieve different kinds of messages in the same validation method, according to the nature of the error. As for the default error message, it is also set up to generate them by using a localization file (if existent).
+`pundit_custom_errors` is an extension for the [Pundit gem](https://github.com/elabs/pundit) that enables the creation of custom error messages. This adds more flexibility to retrieve different kinds of messages in the same validation method, according to the nature of the error. As for the default error message, it is also set up to generate them by using a localization file (if existent).
 
 ## Installation
 
