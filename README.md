@@ -47,7 +47,7 @@ en:
     default: "You have requested a page that you do not have access to."
     sample_policy:
       show?: "You're not allowed to see this."
-      edit?: "You're not allowed to edit this"
+      edit?: "You're not allowed to edit this."
 ```
 
 ## Contributing
