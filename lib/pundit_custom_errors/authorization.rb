@@ -1,7 +1,7 @@
-# Module created to override Pundit's 'authorize' function. It enables Pundit to
-# use the 'error_message' attribute (if existent) inside a Policy object to
-# display the given error message instead of a default error message.
 module PunditCustomErrors
+  # Module created to override Pundit's 'authorize' function. It enables Pundit
+  # to use the 'error_message' attribute (if existent) inside a Policy object,
+  # displaying the given error message instead of a default error message.
   module Authorization
     def authorize(record, query = nil)
       @_pundit_policy_authorized = true
@@ -18,7 +18,11 @@ module PunditCustomErrors
     protected
 
     def generate_error_for(policy, query, record)
-      message = policy.error_message if policy.respond_to?(:error_message)
+      if policy.respond_to? :error_message
+        message = policy.error_message
+        policy.error_message = nil
+      end
+
       message ||= translate_error_message_for_query(query, policy)
       message ||= "not allowed to #{query} this #{record}"
 

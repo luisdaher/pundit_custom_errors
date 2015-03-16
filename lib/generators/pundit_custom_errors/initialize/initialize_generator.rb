@@ -1,7 +1,8 @@
 module PunditCustomErrors
   module Generators
+    # Generates the localization strings YAML file in english
     class InitializeGenerator < ::Rails::Generators::Base
-      desc 'Copy accesstage.yml file to your application config directory.'
+      desc 'Copy pundit_custom_errors.yml file to application config directory.'
 
       def self.source_root
         @source_root ||= File.expand_path(

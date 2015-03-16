@@ -1,5 +1,5 @@
 # PunditCustomErrors
-[![Build Status](https://travis-ci.org/luisdaher/pundit_custom_errors.svg)](https://travis-ci.org/luisdaher/pundit_custom_errors) [![Code Climate](https://codeclimate.com/github/luisdaher/pundit_custom_errors/badges/gpa.svg)](https://codeclimate.com/github/luisdaher/pundit_custom_errors) [![Test Coverage](https://codeclimate.com/github/luisdaher/pundit_custom_errors/badges/coverage.svg)](https://codeclimate.com/github/luisdaher/pundit_custom_errors) [![Inline docs](http://inch-ci.org/github/luisdaher/pundit_custom_errors.svg?branch=master)](http://inch-ci.org/github/luisdaher/pundit_custom_errors)
+[![Build Status](https://travis-ci.org/luisdaher/pundit_custom_errors.svg)](https://travis-ci.org/luisdaher/pundit_custom_errors) [![Code Climate](https://codeclimate.com/github/luisdaher/pundit_custom_errors/badges/gpa.svg)](https://codeclimate.com/github/luisdaher/pundit_custom_errors) [![Inline docs](http://inch-ci.org/github/luisdaher/pundit_custom_errors.svg?branch=master)](http://inch-ci.org/github/luisdaher/pundit_custom_errors)
 
 `pundit_custom_errors` is an extension for the [Pundit gem](https://github.com/elabs/pundit) that enables the creation of custom error messages. This adds more flexibility to retrieve different kinds of messages in the same validation method, according to the nature of the error. As for the default error message, it is also set up to generate them by using a localization file (if existent).
 
@@ -38,12 +38,12 @@ Since the `show?` method is returning `false`, this example will always throw a 
 
 ### Setting a message in an attribute inside the `Policy` class
 
-In order to set custom messages, the first thing to be done is to create the `error_message` attribute with `read` permissions (at least) inside the desired `Policy` class. The `PostPolicy` class will look like this:
+In order to set custom messages, the first thing to be done is to create the `error_message` attribute with `attr_accessor` permissions inside the desired `Policy` class. The `PostPolicy` class will look like this:
 
 ```ruby
   class PostPolicy
-    attr_reader :error_message
-    
+    attr_accessor :error_message
+
     def show?
       # dummy validation code for the 'show' action
       false
@@ -55,11 +55,11 @@ By putting that attribute inside a class, every time a validation method returns
 
 ```ruby
   class PostPolicy
-    attr_reader :error_message
-    
+    attr_accessor :error_message
+
     def show?
       @error_message = "You're not allowed to see this. Better luck next time!"
-      
+
       # dummy validation code for the 'show' action
       false
     end
