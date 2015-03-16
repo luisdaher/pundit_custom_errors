@@ -19,16 +19,56 @@ Or install it yourself as:
 
     $ gem install pundit_custom_errors
 
-## Usage
+## Getting Started
 
-### How to create custom error messages
+(Note: since this gem is intended to extend [Pundit's](https://github.com/elabs/pundit) capabilities, it is assumed that you're already familiar with it. If not, It is highly recommended that you take a look at [Pundit's documentation](https://github.com/elabs/pundit#pundit) first.)
 
-- extend `PunditCustomErrors::Policy` in your `Policy` class.
-- inside the validation method, populate the `Policy`'s `error_message` attribute with the desired error message.
+For this example, let's suppose there's already a standard `Policy` class for an object (`Post`, in this case), called `PostPolicy`, containing a validation for the `show` action. It would look like this:
 
-This way, as the action validation method returns `false`, it will create an error containing the created message.
+```ruby
+  class PostPolicy
+    def show?
+      # dummy validation code for the 'show' action
+      false
+    end
+  end
+```
 
-### Extracting default error messages to YAML
+Since the `show?` method is returning `false`, this example will always throw a `Pundit::NotAuthorizedError`, with Pundit's default error message inside. As said before, this behavior can be changed by either setting a message in an attribute inside the `Policy` class or creating default messages for the actions' validation methods inside a localization YAML file. Both approaches are explained below.
+
+### Setting a message in an attribute inside the `Policy` class
+
+In order to set custom messages, the first thing to be done is to create the `error_message` attribute with `read` permissions (at least) inside the desired `Policy` class. The `PostPolicy` class will look like this:
+
+```ruby
+  class PostPolicy
+    attr_reader :error_message
+    
+    def show?
+      # dummy validation code for the 'show' action
+      false
+    end
+  end
+```
+
+By putting that attribute inside a class, every time a validation method returns false, `Pundit` will try to use the `error_message`. If there's something set there (like the example below), `Pundit` will use it as the error message.
+
+```ruby
+  class PostPolicy
+    attr_reader :error_message
+    
+    def show?
+      @error_message = "You're not allowed to see this. Better luck next time!"
+      
+      # dummy validation code for the 'show' action
+      false
+    end
+  end
+```
+
+As the message is set, every time the `show?` method returns false, the message present inside `error_message` will be put inside the `Pundit::NotAuthorizedError` instance.
+
+### Creating default error messages inside a YAML file
 
 #### Creating the YAML file
 
@@ -40,7 +80,7 @@ A file called `pundit_custom_errors.en.yml` will be generated inside the `config
 
 #### Creating error messages in the localization file
 
-The `policy` keys must be the snake case representation of the given policy classes, containing action names as keys (e.g: `show?`, `edit?` and the messages as values). Also, the `policy` hashes must be inside the `pundit` hash, inside the `en` (or the desired language abbreviation) hash.
+The `policy` keys must be the snake case representation of the given policy classes, containing action names as keys (e.g: `show?` and the message as value). Also, the `policy` hashes must be inside the `pundit` hash, inside the `en` (or the desired language abbreviation) hash.
 
 In short, the YAML file structure should be similar as the example below:
 
@@ -48,11 +88,11 @@ In short, the YAML file structure should be similar as the example below:
 en:
   pundit:
     default: "You have requested a page that you do not have access to."
-    sample_policy:
+    post_policy:
       show?: "You're not allowed to see this."
-      edit?: "You're not allowed to edit this."
 ```
-### Message hierarchy
+
+## Message hierarchy
 
 1. The gem will use the message present in the `error_message` attribute, that should be part of the given `Policy` class.
 2. If there's no error message (or even the attribute, if `PunditCustomErrors::Policy` isn't being extended), it will use the message for the given action validation, present in the YAML file.
