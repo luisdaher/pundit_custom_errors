@@ -1,3 +1,5 @@
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 require 'rubygems'
 require 'bundler'
 require 'pundit_custom_errors'
